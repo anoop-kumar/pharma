@@ -1,0 +1,23 @@
+name: Pharma
+description: 'This is a customized theme for Medine website.'
+type: theme
+base theme: classy
+core: '8.x'
+package: TCS
+
+libraries:
+  - pharma/global-styling
+
+regions:
+  header: Header
+  top_menu: 'Top Menu'
+  navigation: Navigation
+  banner: Banner
+  sidebar: Sidebar
+  breadcrumb: Breadcrumb
+  content: 'Main Body'
+  footer_top: 'Footer Top'
+  footer_col1: 'Footer Column 1'
+  footer_col2: 'Footer Column 2'
+  footer_col3: 'Footer Column 3'
+  footer: Footer

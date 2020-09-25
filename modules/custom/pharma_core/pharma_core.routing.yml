@@ -1,0 +1,6 @@
+pharma_core.cart:
+  path: '/cart'
+  defaults:
+    _controller: Drupal\pharma_core\Controller\CartController::index
+  requirements:
+    _permission: 'access content'

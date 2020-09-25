@@ -1,0 +1,6 @@
+name: 'Pharma Core'
+description: 'This is an custom module to add the required featured in theme.'
+type: module
+package: TCS
+core: '8.x'
+version: '1.0'

@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function pharma_preprocess_page(&$variables) {
+    $config = \Drupal::config('system.site');
+    $variables['sitename'] = $config->get('name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pharma_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id = NULL) {
+  if(isset($form_id)){
+      return;
+  }
+
+  // Create a section for footer contact info
+  $form['pharma_footer_contact'] = array(
+    '#type'         => 'details',
+    '#title'        => t('Contact Info'),
+    '#description'  => t('Contact information is displayed in the footer'),
+    '#weight'       => -999,
+    '#open'         => TRUE,
+    );
+
+  $form['pharma_footer_contact']['pharma_address'] = array(
+    '#type'          => 'textarea',
+    '#title'         => t('Address'),
+    '#default_value' => theme_get_setting('pharma_address'),
+    '#description'   => t("Please enter Office address, displayed in footer."),
+  );
+
+  $form['pharma_footer_contact']['pharma_phone'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Phone'),
+    '#default_value' => theme_get_setting('pharma_phone'),
+    '#description'   => t("Please enter Office phone, displayed in footer."),
+  );
+
+  $form['pharma_footer_contact']['pharma_email'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Email'),
+    '#default_value' => theme_get_setting('pharma_email'),
+    '#description'   => t("Please enter Office email, displayed in footer."),
+  );
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function pharma_preprocess_menu(&$variables, $hook) {
+
+    if(!isset($variables['attributes']['class'])){
+        $variables['attributes']['class'] = [];
+    }
+    // Merge with any classes that may have been set by other hook_preprocess_menu invocations
+    $variables['attributes']['class'] = array_merge(
+        $variables['attributes']['class'], ['site-menu', 'js-clone-nav', 'd-none', 'd-lg-block']
+    ); 
+    // Applying menu class on active
+    if ($variables['theme_hook_original'] == 'menu__main') {
+      pharma_menu_active_item($variables['items']);
+    }
+}
+/**
+ * Custom functon to add 'active' class in Menu Li.
+ */
+function pharma_menu_active_item(&$items) {
+	$current_path = \Drupal::request()->getRequestUri();
+	foreach ($items as $key => $item) {
+		// if path is current path, set active to li
+		if ($item['url']->toString() == $current_path) {
+			// add active linl
+			$items[$key]['attributes']['class'] = 'active';
+		}
+		if (!empty($items[$key]['below'])) {
+			pharma_menu_active_item($items[$key]['below']);
+		}
+	}
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function pharma_preprocess_block(&$variables) {
+  // Applying custom class on NAV.
+  if ($variables['plugin_id'] == 'system_menu_block:main') {      
+    $variables['attributes']['class'][] = 'site-navigation';
+    $variables['attributes']['class'][] = 'text-right';
+    $variables['attributes']['class'][] = 'text-md-center';    
+  }
+}

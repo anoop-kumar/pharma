@@ -1,0 +1,63 @@
+<div class="site-wrap">
+    <div class="site-navbar py-2">
+      {{ page.header }}
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <div class="site-logo">
+              <a href="{{ path('<front>') }}" class="js-logo-clone">{{ sitename }}</a>
+            </div>
+          </div>
+          <div class="main-nav d-none d-lg-block">            
+            {{ page.navigation }} 
+          </div>
+          {{ page.top_menu }}          
+        </div>
+      </div>
+    </div>
+    {{ page.banner }}
+    {{ page.breadcrumb }}
+    {{ page.content }}
+    {{ page.sidebar }}    
+    {{ page.footer_top }}  
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+
+            <div class="block-7">
+             {{ page.footer_col1 }}
+            </div>
+
+          </div>
+          <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
+           {{ page.footer_col2 }}
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+                 {{ page.footer_col3 }}
+            </div>
+
+
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">  
+          {{ page.footer }}          
+            <p>
+            
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+              with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
+                class="text-primary">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  </div>

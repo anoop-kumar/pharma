@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function pharma_core_theme($existing, $type, $theme, $path) {
+  return [
+      'topmenu' => [
+          'variables' => [
+              'item_count' => 0,			  
+          ]
+      ]
+  ];
+}
